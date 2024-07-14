@@ -1,0 +1,36 @@
+{% extends "Layout.html" %}
+{% load static %}
+{% block Body_Content %}
+    
+    <div class="flex flex-col gap-3 justify-center items-center md:grid md:grid-cols-5 p-3">
+        {% if Reviews|length != 0 %}
+            {% for Review in Reviews %}
+                <div class="max-w-sm min-h-[35vh] max-h-[35vh] overflow-x-auto overflow-y-auto bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+                    <img class="rounded-t-lg w-full object-cover" src="{{ Review.ReviewImage.url }}" alt="Image" />
+                    <div class="p-5">
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{{ Review.ReviewTitle }}</h5>
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">{{ Review.ReviewMessage }}</p>
+                        {% if user == Review.ReviewUser %}
+                            <a href="{% url "Edit_Review" Review.id %}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Edit                            
+                            </a>
+                            <a href="{% url "Delete_Review" Review.id %}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Delete                            
+                            </a>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% if  user.is_authenticated %}
+        <a href="{% url "Create_Review" %}" class="min-w-[24rem] cursor-pointer min-h-[35vh] max-h-[35vh] flex justify-center items-center bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+            <img src="{% static "Add.png" %}" class="w-10 h-10 rounded-full" alt="Add">
+        </a>        
+    {% endif %}
+    {% if Reviews|length == 0 and user.is_authenticated == False %}
+        <h1 class="text-5xl text-white h-[90.1vh] w-[98vw] flex justify-center items-center">
+            No Reviews To Show - Please Login Or Signup To Add Reviews
+        </h1>
+    {% endif %}
+    </div>
+{% endblock Body_Content %}

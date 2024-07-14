@@ -1,0 +1,71 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      {% block Title %}{% endblock Title %}
+    </title>
+    <link rel="stylesheet"
+    href="{% static 'Final.css' %}">
+  </head>
+  <body>
+   
+    <header class="text-white bg-slate-500">
+      <div class="flex p-3 items-center justify-between">
+        <div class="flex gap-2 justify-center items-center">
+          <div class="flex gap-2 items-center justify-center">
+            <img src="{% static "Logo.png" %}"
+                 alt
+                 "
+                 Logo
+                 "
+                 class="h-10 w-10 rounded-full">
+            <a class="">
+              <span class="text-xl">The Binge Watching Buddy</span>
+            </a>
+            {% comment %} <form action="/" method="post">
+              {% csrf_token %}
+              {{Search_Form.as_p}}
+              <button class="text-white" type="submit">Submit</button>
+          </form> {% endcomment %}
+          </div>
+
+
+        </div>
+
+      <div class="flex gap-3 items-center justify-center">
+        {% if request.path == "/" %}
+        <form class="md:inline hidden" action="/" method="post">   
+          {% csrf_token %}
+            {% comment %} <p class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">{{Search_Form.Search_Value.label_tag}}</p> {% endcomment %}
+            <div>
+                {{Search_Form.Search_Value}}
+                <button type="submit" class="font-medium p-2 bg-blue-600 rounded-md">Search</button>
+            </div>
+        </form>
+        
+        {% endif %}
+        
+        {% if  user.is_authenticated %}
+          <form method="post" action="{% url "logout" %}">
+            {% csrf_token %}
+            <button type="submit" class="font-medium p-2 bg-red-500 rounded-md">Logout</button>
+          </form>
+        {% else %}
+          <div class="flex gap-2">
+            <a href="{% url "User_Register" %}" class="font-medium p-2 bg-blue-400 rounded-md">Signup</a>
+            <a href="{% url "login" %}" class="font-medium p-2 bg-pink-500 rounded-md">Login</a>
+          </div>
+        {% endif %}
+        </div>
+      </div>
+    </header>
+    <div class="min-h-[93.1vh] bg-[radial-gradient(circle_farthest-side,rgba(255,0,182,.15),rgba(255,255,255,0))] bg-slate-950 ">
+      {% block Body_Content %}
+      
+      {% endblock Body_Content%}
+    </div>
+  </body>
+</html>
