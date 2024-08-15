@@ -15,7 +15,7 @@ SECRET_KEY = 'django-insecure-uw6^be#kbt%8skx#2qqr)^++=p98e-i6f-)k22mnmgr-_b0pof
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [".vercel.app"]
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
@@ -64,11 +64,27 @@ WSGI_APPLICATION = 'Mega_Project.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'ENGINE': 'django_tidb',
+        'NAME': 'The_Binge_Watching_Buddy',
+        'USER': '4QynQTdwHud7232.root',
+        'PASSWORD': 'aZBfgYbX2vcdGNS8',
+        'HOST': 'gateway01.ap-southeast-1.prod.aws.tidbcloud.com',
+        'PORT': 4000,
+        'OPTIONS': {
+            'ssl_mode': 'VERIFY_IDENTITY',
+            'ssl': {'ca': './isrgrootx1.pem'},
+            'charset': 'utf8mb4'
+        }
+    },
 }
 
 
@@ -102,6 +118,7 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles_build', 'static')
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
