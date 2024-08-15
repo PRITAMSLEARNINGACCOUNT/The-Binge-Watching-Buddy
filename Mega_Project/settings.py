@@ -73,7 +73,7 @@ WSGI_APPLICATION = 'Mega_Project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'mysql.connector.django',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': 'The_Binge_Watching_Buddy',
         'USER': '4QynQTdwHud7232.root',
         'PASSWORD': 'aZBfgYbX2vcdGNS8',
