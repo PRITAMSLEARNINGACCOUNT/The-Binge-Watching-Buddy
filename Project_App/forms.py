@@ -6,13 +6,13 @@ from django.contrib.auth.forms import UserCreationForm
 class ReviewFrom(forms.ModelForm):
     class Meta:
         model = ReviewModel
-        fields = ["ReviewTitle", "ReviewMessage", "ReviewImage", "Type"]
+        fields = ["ReviewTitle", "ReviewMessage", "ReviewImageURL", "Type"]
 
     def __init__(self, *args, **kwargs):
         super(ReviewFrom, self).__init__(*args, **kwargs)
         self.fields['ReviewTitle'].widget.attrs.update({'class': 'h-10 w-40'})
         self.fields['ReviewMessage'].widget.attrs.update()
-        self.fields['ReviewImage'].widget.attrs.update(
+        self.fields['ReviewImageURL'].widget.attrs.update(
             {'class': 'border-l-amber-900 flex text-white gap-2 justify-center items-center text-center cursor-pointer'})
         self.fields['Type'].widget.attrs.update()
         # Follow The Below Syntax To Add Custom Tailwind CSS Classes To A Django HTML Element
