@@ -11,7 +11,7 @@
       "use": "@vercel/static"
     },
     {
-      "src": "media/**/*",
+      "src": "tmp/**/*",
       "use": "@vercel/static"
     }
   ],
@@ -21,8 +21,8 @@
       "dest": "/static/$1"
     },
     {
-      "src": "/media/(.*)",
-      "dest": "/media/$1"
+      "src": "/tmp/(.*)",
+      "dest": "/tmp/$1"
     },
     {
       "src": "/(.*)",
