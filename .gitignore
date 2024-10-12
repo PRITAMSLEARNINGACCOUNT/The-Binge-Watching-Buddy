@@ -1,0 +1,7 @@
+tailwind.config.js
+node_modules
+__pycache__
+CACHE
+package-lock.json
+package.json
+.env

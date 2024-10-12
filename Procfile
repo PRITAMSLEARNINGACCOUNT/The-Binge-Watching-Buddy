@@ -1,0 +1,1 @@
+web: gunicorn Mega_Project.wsgi
