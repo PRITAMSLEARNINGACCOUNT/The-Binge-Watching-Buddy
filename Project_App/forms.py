@@ -13,7 +13,7 @@ class ReviewFrom(forms.ModelForm):
         self.fields['ReviewTitle'].widget.attrs.update({'class': 'h-10 w-40'})
         self.fields['ReviewMessage'].widget.attrs.update()
         self.fields['ReviewImageURL'].widget.attrs.update(
-            {'class': 'border-l-amber-900 flex text-white gap-2 justify-center items-center text-center cursor-pointer'})
+            {'class': 'border-l-amber-900 flex text-black gap-2 justify-center items-center text-center'})
         self.fields['Type'].widget.attrs.update()
         # Follow The Below Syntax To Add Custom Tailwind CSS Classes To A Django HTML Element
         # self.fields['Type'].widget.attrs.update(
