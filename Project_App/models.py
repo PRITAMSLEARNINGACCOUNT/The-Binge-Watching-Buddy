@@ -11,7 +11,7 @@ class ReviewModel(models.Model):
     ReviewUser = models.ForeignKey(User, on_delete=models.CASCADE)
     ReviewTitle = models.CharField(max_length=100)
     ReviewMessage = models.TextField(max_length=500)
-    ReviewImage = models.ImageField(upload_to="static")
+    ReviewImage = models.ImageField(upload_to="tmp/static")
     Upload_at = models.DateTimeField(auto_now_add=True)
     Updated_at = models.DateTimeField(auto_now=True)
     Type = models.CharField(
